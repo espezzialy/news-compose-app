@@ -13,9 +13,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.lifecycleScope
 import com.espezzialy.news_compose_app.domain.useCases.AppEntryUseCases
 import com.espezzialy.news_compose_app.presentation.onboarding.OnBoardingScreen
+import com.espezzialy.news_compose_app.presentation.onboarding.OnBoardingViewModel
 import com.espezzialy.news_compose_app.ui.theme.NewscomposeappTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -23,25 +25,30 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    @Inject
-    lateinit var appEntryUseCases: AppEntryUseCases
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
+
+
         installSplashScreen()
-        lifecycleScope.launch {
-            appEntryUseCases.readAppEntry().collect() {
-                Log.d("Test", it.toString())
-            }
-        }
+
         setContent {
             NewscomposeappTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    OnBoardingScreen()
+                    val viewModel : OnBoardingViewModel = hiltViewModel()
+                    OnBoardingScreen(
+                        /*
+                        The implementation below is the same that
+                        event = viewModel::onEvent
+                        * */
+                        event = {
+                            viewModel.onEvent(it)
+                        }
+                    )
                 }
             }
         }
