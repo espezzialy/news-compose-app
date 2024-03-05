@@ -1,4 +1,4 @@
-package com.espezzialy.news_compose_app.domain.useCases
+package com.espezzialy.news_compose_app.domain.useCases.app_entry
 
 import com.espezzialy.news_compose_app.domain.manager.LocalUserManager
 

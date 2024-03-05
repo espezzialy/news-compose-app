@@ -2,7 +2,8 @@
 <resources>
 
     <style name="Theme.Newscomposeapp" parent="android:Theme.Material.Light.NoActionBar" >
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
+<!--        The solution below is to let bars translucent -->
+<!--        <item name="android:windowTranslucentStatus">true</item>-->
+<!--        <item name="android:windowTranslucentNavigation">true</item>-->
     </style>
 </resources>

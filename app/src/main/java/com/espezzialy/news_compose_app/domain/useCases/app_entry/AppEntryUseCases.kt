@@ -1,4 +1,4 @@
-package com.espezzialy.news_compose_app.domain.useCases
+package com.espezzialy.news_compose_app.domain.useCases.app_entry
 
 data class AppEntryUseCases(
     val readAppEntry: ReadAppEntryUseCase,
